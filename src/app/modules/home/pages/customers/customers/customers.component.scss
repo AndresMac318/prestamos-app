@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    
+
+    @media screen and (width >= 400px) {
+        flex-flow: row nowrap;
+    }
+
+    &__title {
+        margin: 0;
+    }
+    
+    &__button {
+
+        cursor: pointer;
+        span {
+            // display: none;
+        }
+        i {
+            // font-size: 28px;
+        }
+    }
+}

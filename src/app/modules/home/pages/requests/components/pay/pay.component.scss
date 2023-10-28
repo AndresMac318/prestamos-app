@@ -1,0 +1,19 @@
+::ng-deep .ant-drawer-content-wrapper {
+    height: 410px !important;
+}
+
+@media screen and (width >= 550px) {
+    
+    ::ng-deep .ant-drawer-body {
+        margin: 0 6%
+    }
+}
+
+span {
+    font-weight: 600;
+}
+
+.btn-pay {
+    background-color: #85BB65;
+    border-color: #85BB65;
+}

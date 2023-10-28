@@ -1,0 +1,36 @@
+<div class="header">
+    <h2 class="header__title">Listado de Solicitudes</h2>
+    <app-create-form (eventCreated)="handleRequestCreated($event)" customForm="requests"></app-create-form>
+</div>
+
+<hr/>
+
+<nz-table #filterTable [nzData]="requests" [nzPageSize]="10" [nzScroll]="{ y: '48vh' }" >
+    <thead>
+        <tr>
+            <th nzWidth="100px">Nombre</th>
+            <th nzWidth="120px" 
+                [(nzSortOrder)]="columnItem[0].sortOrder"
+                [nzSortFn]="columnItem[0].sortFn"
+                 >
+                Monto
+            </th>
+            <th nzWidth="120px" 
+                [nzFilters]="columnItem[1].listOfFilter" 
+                [nzFilterFn]="columnItem[1].filterFn">
+                Estado
+            </th>
+            <th nzWidth="90px">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of filterTable.data">
+            <td>{{ data.nameApplicant }}</td>
+            <td>{{ data.amount | currency }}</td>
+            <td> <nz-tag [nzColor]="(data.balanceStatus === 'saldada')?'green': 'red'">{{ data.balanceStatus }}</nz-tag></td>
+            <td>
+                <app-pay [idRequest]="data.id!" ></app-pay>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

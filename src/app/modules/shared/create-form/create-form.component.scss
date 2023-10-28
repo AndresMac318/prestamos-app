@@ -1,0 +1,26 @@
+@use "../../../../assets/scss/mixins" as mixins;
+
+::ng-deep .ant-drawer-content-wrapper {
+    height: 450px !important;
+    @include mixins.tablet(){
+        height: 378px !important;
+    }
+}
+
+[nz-form] {
+    @include mixins.desktop(){
+        margin: 4vh 10vw;
+    }
+}
+
+/* [nz-form] .ant-drawer-content-wrapper {
+    height: 450px;
+} */
+
+input {
+    width: 250px;
+}
+
+::ng-deep nz-input-number{
+    width: 250px !important;
+}

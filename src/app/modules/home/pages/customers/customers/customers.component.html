@@ -1,0 +1,24 @@
+<div class="header">
+    <h2 class="header__title">Listado de Clientes</h2>
+    <app-create-form (eventCreated)="handleUserCreated($event)" customForm="customers" ></app-create-form>
+</div>
+<hr/>
+
+<nz-table #headerTable [nzData]="customers" [nzPageSize]="10" [nzScroll]="{ y: '48vh' }" >
+    <thead>
+        <tr>
+            <th nzWidth="100px">Nombre</th>
+            <th nzWidth="120px">Documento</th>
+            <th nzWidth="90px">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of headerTable.data">
+            <td>{{ data.name }}</td>
+            <td>{{ data.numDocument }}</td>
+            <td> edit </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+

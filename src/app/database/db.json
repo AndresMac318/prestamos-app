@@ -1,0 +1,21 @@
+{
+  "customers": [
+    {
+      "name": "Martin Palermo",
+      "email": "palermo@test.com",
+      "numDocument": "11222333",
+      "id": 1
+    }
+  ],
+  "requests": [
+    {
+      "numDocument": "11222333",
+      "nameApplicant": "Martin Palermo",
+      "amount": 5800000,
+      "paymentDate": "2023-11-06T19:37:16.890Z",
+      "requestStatus": "aprovada",
+      "balanceStatus": "mora",
+      "id": 1
+    }
+  ]
+}

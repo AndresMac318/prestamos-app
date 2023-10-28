@@ -1,0 +1,107 @@
+<button nz-button nzType="primary" (click)="open()">{{ textBtn }}</button>
+
+<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzMaskClosable]="false" [nzWidth]="720" [nzVisible]="visible"
+  [nzTitle]="titleDrawer" [nzPlacement]="placement" [nzFooter]="footerTpl" (nzOnClose)="close()">
+  
+    <ng-container *nzDrawerContent>
+      
+      <form *ngIf="customForm === 'customers'" nz-form nzLayout="vertical" [formGroup]="formCustomer">
+            <div nz-row [nzGutter]="8">
+              <div nz-col nzXs="24" nzMd="12" nzSpan="12">
+                <nz-form-item>
+                  <nz-form-label>Nombre</nz-form-label>
+                  <nz-form-control>
+                    <input nz-input placeholder="Ingrese el nombre" formControlName="name" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div nz-col nzXs="24" nzMd="12" nzSpan="12">
+                <nz-form-item>
+                  <nz-form-label>Email</nz-form-label>
+                  <nz-form-control nzErrorTip="*Ingrese un email válido">
+                    <nz-input-group>
+                      <input nz-input placeholder="Ingrese el email" formControlName="email" nzRequired />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+    
+            <div nz-row [nzGutter]="8">
+              <div nz-col nzXs="24" nzMd="12" nzSpan="12" >
+                <nz-form-item>
+                  <nz-form-label>Nro. Documento</nz-form-label>
+                  <nz-form-control nzErrorTip="*Solo ingrese valores numericos">
+                    <nz-input-group>
+                      <input nz-input placeholder="Ingrese el número de documento" formControlName="numDocument" />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+            </div>
+      </form>
+
+      <h4 *ngIf="customForm !== 'customers'" >Cree su solicitud de crédito desde 100.000 hasta 12.000.000</h4>
+
+      <form *ngIf="customForm !== 'customers'" nz-form nzLayout="vertical" [formGroup]="formRequest">
+      
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzXs="24" nzMd="12" nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Nro. Documento</nz-form-label>
+              <nz-form-control nzErrorTip="*Ingrese un número de documento válido">
+                <input nz-input placeholder="Ingrese el número de documento" formControlName="numDocument" #numDoc (keyup)="chargeName(numDoc.value)"  />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzXs="24" nzMd="12" nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Nombre</nz-form-label>
+              <nz-form-control nzErrorTip="*Ingrese un nombre válido">
+                <nz-input-group>
+                  <input nz-input nzValidateStatus="error" formControlName="nameApplicant" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        
+        <div nz-row [nzGutter]="8">
+          <div nz-col nzXs="24" nzMd="12" nzSpan="12">
+            <nz-form-item>
+              <nz-form-label>Monto</nz-form-label>
+              <nz-form-control nzErrorTip="*Ingrese un monto válido">
+                <nz-input-number 
+                    nz-input placeholder="Ingrese el monto a prestar" 
+                    formControlName="amount"
+                    nzRequired
+                    [nzMin]="100000"
+                    [nzMax]="12000000"
+                    nzPlaceHolder="100000 hasta 12000000"
+                    ></nz-input-number>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzXs="24" nzMd="12" nzSpan="12">
+            <nz-form-item>
+                <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Fecha a pagar</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24">
+                  <nz-date-picker [nzDisabledDate]="disabledStartDate" formControlName="paimentDate"></nz-date-picker>
+                </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+    
+      </form>
+
+    </ng-container>
+
+  <ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="close()">Cancelar</button>
+      <button  *ngIf="customForm === 'customers'" nz-button nzType="primary" (click)="sendForm()" [nzLoading]="" >Crear</button>
+      <button *ngIf="customForm !== 'customers'" nz-button nzType="primary" (click)="sendForm()" [nzLoading]="isLoading" >Crear</button>
+    </div>
+  </ng-template>
+
+</nz-drawer>
